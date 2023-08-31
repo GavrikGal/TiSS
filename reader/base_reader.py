@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
 
 
+class EmptyReaderException(Exception):
+    pass
+
+
 class Reader(ABC):
     """Абстракция чтеца данных"""
 
