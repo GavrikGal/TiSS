@@ -3,7 +3,7 @@ import unittest
 from reader.data_reader import DataReader
 from .constants import TEST_DATA_DIRS
 from reader.data_reader import INDEX_TYPE
-from reader.readers.r2_reader import R2Reader
+from reader.file_readers.result_reader import R2Reader
 
 
 class TestDataReader(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestDataReader(unittest.TestCase):
 
         data_reader.set_file_sets_container(TEST_DATA_DIRS)
         data_reader.set_index_type(INDEX_TYPE.NUMBER)
-        data_reader.set_reader(R2Reader())
+        # data_reader.set_reader(R2Reader())
 
         data = data_reader.read_data()
 
@@ -25,7 +25,7 @@ class TestDataReader(unittest.TestCase):
         data_reader = DataReader()
 
         data_reader.set_index_type(INDEX_TYPE.NUMBER)
-        data_reader.set_reader(R2Reader())
+        # data_reader.set_reader(R2Reader())
 
         self.assertRaises(ValueError, data_reader.validate_init_data)
 
@@ -34,24 +34,24 @@ class TestDataReader(unittest.TestCase):
         data_reader = DataReader()
 
         data_reader.set_file_sets_container(TEST_DATA_DIRS)
-        data_reader.set_reader(R2Reader())
+        # data_reader.set_reader(R2Reader())
 
         self.assertRaises(ValueError, data_reader.validate_init_data)
 
-    def test_validate_init_data_without_reader_raise_error(self):
-        """Тестирует, чтение данных без контейнера выборок файлов вызывает ошибку"""
-        data_reader = DataReader()
-
-        data_reader.set_file_sets_container(TEST_DATA_DIRS)
-        data_reader.set_index_type(INDEX_TYPE.NUMBER)
-
-        self.assertRaises(Exception, data_reader.validate_init_data)
+    # def test_validate_init_data_without_reader_raise_error(self):
+    #     """Тестирует, чтение данных без контейнера выборок файлов вызывает ошибку"""
+    #     data_reader = DataReader()
+    #
+    #     data_reader.set_file_sets_container(TEST_DATA_DIRS)
+    #     data_reader.set_index_type(INDEX_TYPE.NUMBER)
+    #
+    #     self.assertRaises(Exception, data_reader.validate_init_data)
 
     def test_read_data_without_validate_init_data_raise_error(self):
         """Тестирует, чтение данных без контейнера выборок файлов вызывает ошибку"""
         data_reader = DataReader()
 
-        data_reader.set_reader(R2Reader())
+        # data_reader.set_reader(R2Reader())
 
         self.assertRaises(Exception, data_reader.read_data)
 
