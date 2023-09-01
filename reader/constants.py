@@ -1,5 +1,14 @@
-from collections import namedtuple
+import enum
 
 
-INDEX_TYPE = namedtuple('index', ['NUMBER', 'ANGEL', 'DATE', 'FREQUENCY'])
-DATA_TYPE = namedtuple('data', ['R2', 'SIGNAL', 'NOISE'])
+class IndexType(enum.IntFlag):
+    Number = 1
+    Angel = 2
+    Date = 3
+    Frequency = 4
+
+
+class DataType(enum.IntFlag):
+    R2 = 1
+    Signal = 2
+    Noise = 3

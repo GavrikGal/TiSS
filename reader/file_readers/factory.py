@@ -1,50 +1,49 @@
-from typing import Hashable, Callable
+from typing import Callable
 
-from ..constants import INDEX_TYPE, DATA_TYPE
+from ..constants import IndexType, DataType
 from ..base_file_reader import FileReader
 from ..base_factory import BaseFileReaderFactory, ClassNotFoundError
 
 from .result_reader import R2Reader, SignalsReader, NoisesReader
-from .index_reader import NumberReader, AngelReader, DateReader, FrequenciesReader
+from .index_reader import SerialNumberReader, AngelReader, DateReader, FrequenciesReader
 
 
 class FileReaderFactory(BaseFileReaderFactory):
     """Фабрика для возвращения нужного типа чтеца данных"""
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(FileReaderFactory, cls).__new__(cls)
+        return cls.instance
 
     @staticmethod
-    def get_index_reader(index_type: INDEX_TYPE) -> FileReader:
+    def get_index_reader(index_type: IndexType) -> FileReader:
         """Возвращает экземпляр класса для чтения индексов"""
 
-        print("get_index_reader():", index_type)
-        print("get_index_reader() hash():", hash(index_type))
-
-        classes: dict[INDEX_TYPE, Callable[..., FileReader]] = {
-            INDEX_TYPE.NUMBER: NumberReader,
-            INDEX_TYPE.ANGEL: AngelReader,
-            INDEX_TYPE.DATE: DateReader,
-            INDEX_TYPE.FREQUENCY: FrequenciesReader,
+        classes: dict[IndexType, Callable[..., FileReader]] = {
+            IndexType.Number: SerialNumberReader,
+            IndexType.Angel: AngelReader,
+            IndexType.Date: DateReader,
+            IndexType.Frequency: FrequenciesReader,
         }
 
-        print(classes)
-
-        class_ = classes.get(index_type, None)
+        class_ = classes.get(IndexType.Number, None)
         if class_ is not None:
             return class_()
 
         raise ClassNotFoundError
 
     @staticmethod
-    def get_data_reader(data_type: DATA_TYPE) -> FileReader:
+    def get_data_reader(data_type: DataType) -> FileReader:
         """Возвращает экземпляр класса для чтения данных"""
 
-        classes: dict[DATA_TYPE, Callable[..., FileReader]] = {
-            DATA_TYPE.R2: R2Reader,
-            DATA_TYPE.SIGNAL: SignalsReader,
-            DATA_TYPE.NOISE: NoisesReader,
+        classes: dict[DataType, Callable[..., FileReader]] = {
+            DataType.R2: R2Reader,
+            DataType.Signal: SignalsReader,
+            DataType.Noise: NoisesReader,
         }
 
         class_ = classes.get(data_type, None)
         if class_ is not None:
-            return class_
+            return class_()
 
         raise ClassNotFoundError

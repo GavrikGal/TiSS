@@ -1,18 +1,23 @@
+import pandas as pd
 from directory import Dir
-from file import File
-from constants import DATA_TYPE, INDEX_TYPE
-from base_factory import BaseFileReaderFactory
+from reader.file_readers.file import File
+from constants import DataType, IndexType
 
 
 class FileSet:
     """Выборка файлов"""
-    def __init__(self, directory: Dir, file_reader_factory: BaseFileReaderFactory):
-        self.files = [File(file_name, file_reader_factory) for file_name in directory.get_file_list()]
+    def __init__(self, directory: Dir):
+        self.files = [File(file_name) for file_name in directory.get_file_list()]
 
-    def read_data_all_set(self, index_type: INDEX_TYPE, data_type: DATA_TYPE):
+    def read_all_from_file_set(self, index_type: IndexType, data_type: DataType):
         indexes = [file.get_index(index_type) for file in self.files]
         data = [file.get_data(data_type) for file in self.files]
-        return
+
+        if not indexes or not data:
+            raise ValueError("Error in Indexes when was creating DataFrame")
+        if not data:
+            raise ValueError("Error in Data when was creating DataFrame")
+        return pd.DataFrame(data, index=indexes)
 
     def __repr__(self):
         return str(self.files)
