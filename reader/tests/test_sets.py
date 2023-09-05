@@ -66,3 +66,15 @@ test_data_r2_answer_set = [
 test_index_date_answer_set = [
 
 ]
+
+test_file_name = r'Е 2200101 VGA R2=6 Ft=54.txt'
+test_dir = r'tests\data\ВМЦ-45ЖК\2022'
+
+test_index_frequencies_answer_set = [
+    54.0,
+    162.0,
+    270.0,
+    378.0,
+    486.0,
+    594.0,
+]

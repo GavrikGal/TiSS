@@ -30,7 +30,7 @@ class DateReader(BaseFileReader):
 
 class FrequenciesReader(BaseFileReader):
     def read(self, file: BaseFile) -> List[float]:
-        frequencies = pd.read_csv(os.path.join(file.dir.path, file.name), sep='\t', encoding='cp1251', usecols=[1],
-                                  skiprows=1, index_col=0)
-        return frequencies.values
+        frequencies = pd.read_csv(os.path.join(file.dir.path, file.name), sep='\t', encoding='cp1251',
+                                  usecols=[1], skiprows=2, names=['freq'])
+        return frequencies['freq'].tolist()
 
