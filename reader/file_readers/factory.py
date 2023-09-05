@@ -1,7 +1,7 @@
 from typing import Callable
 
 from reader.constants import IndexType, DataType
-from reader.base_file_reader import FileReader
+from reader.base_file_reader import BaseFileReader
 from reader.base_factory import BaseFileReaderFactory, ClassNotFoundError
 
 from .result_reader import R2Reader, SignalsReader, NoisesReader
@@ -16,10 +16,10 @@ class FileReaderFactory(BaseFileReaderFactory):
         return cls.instance
 
     @staticmethod
-    def get_index_reader(index_type: IndexType) -> FileReader:
+    def get_index_reader(index_type: IndexType) -> BaseFileReader:
         """Возвращает экземпляр класса для чтения индексов"""
 
-        classes: dict[IndexType, Callable[..., FileReader]] = {
+        classes: dict[IndexType, Callable[..., BaseFileReader]] = {
             IndexType.Number: SerialNumberReader,
             IndexType.Angel: AngleReader,
             IndexType.Date: DateReader,
@@ -33,10 +33,10 @@ class FileReaderFactory(BaseFileReaderFactory):
         raise ClassNotFoundError
 
     @staticmethod
-    def get_data_reader(data_type: DataType) -> FileReader:
+    def get_data_reader(data_type: DataType) -> BaseFileReader:
         """Возвращает экземпляр класса для чтения данных"""
 
-        classes: dict[DataType, Callable[..., FileReader]] = {
+        classes: dict[DataType, Callable[..., BaseFileReader]] = {
             DataType.R2: R2Reader,
             DataType.Signal: SignalsReader,
             DataType.Noise: NoisesReader,

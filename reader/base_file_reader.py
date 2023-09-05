@@ -5,7 +5,7 @@ from datetime import datetime
 from base_file import BaseFile
 
 
-class FileReader(ABC):
+class BaseFileReader(ABC):
     """Абстракция чтеца данных из файла"""
 
     @abstractmethod

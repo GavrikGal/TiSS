@@ -1,11 +1,11 @@
 import re
 from typing import List
 
-from reader.base_file_reader import FileReader
+from reader.base_file_reader import BaseFileReader
 from reader.base_file import BaseFile
 
 
-class R2Reader(FileReader):
+class R2Reader(BaseFileReader):
 
     def read(self, file: BaseFile) -> float:
         if 'R2=' in file.name:
@@ -19,13 +19,13 @@ class R2Reader(FileReader):
         raise ValueError("R2 not found in filename")
 
 
-class SignalsReader(FileReader):
+class SignalsReader(BaseFileReader):
     def read(self, file: BaseFile) -> List[float]:
         ...
         # print("Read Signal from file body")
 
 
-class NoisesReader(FileReader):
+class NoisesReader(BaseFileReader):
     def read(self, file: BaseFile) -> List[float]:
         ...
         # print("Read Noise from file body")

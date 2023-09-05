@@ -1,9 +1,10 @@
 from typing import Union, List
+
 from reader.constants import DataType, IndexType
 from reader.base_file import BaseFile
+from reader.base_directory import BaseDirectory
 
 from .factory import FileReaderFactory
-from reader.base_directory import BaseDirectory
 
 
 class File(BaseFile):
