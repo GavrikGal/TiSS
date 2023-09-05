@@ -1,6 +1,8 @@
 import pandas as pd
-from directory import Dir
+
 from reader.file_readers.file import File
+
+from directory import Dir
 from constants import DataType, IndexType
 
 

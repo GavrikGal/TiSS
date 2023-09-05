@@ -2,30 +2,31 @@ import re
 from typing import List
 
 from reader.base_file_reader import FileReader
+from reader.base_file import BaseFile
 
 
 class R2Reader(FileReader):
 
-    def read(self, filename, directory) -> float:
-        if 'R2=' in filename:
-            part_with_r2 = filename.split("R2=")[1].split(" ")[0]
+    def read(self, file: BaseFile) -> float:
+        if 'R2=' in file.name:
+            part_with_r2 = file.name.split("R2=")[1].split(" ")[0]
             r2 = re.search(r'([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))', part_with_r2)[0]
             return float(r2)
-        if len(re.findall(r' (\d+)', filename)):
-            r2 = re.findall(r' (\d+)', filename)[-1]
+        if len(re.findall(r' (\d+)', file.name)):
+            r2 = re.findall(r' (\d+)', file.name)[-1]
             return float(r2)
 
         raise ValueError("R2 not found in filename")
 
 
 class SignalsReader(FileReader):
-    def read(self, filename, directory) -> List[float]:
+    def read(self, file: BaseFile) -> List[float]:
         ...
         # print("Read Signal from file body")
 
 
 class NoisesReader(FileReader):
-    def read(self, filename, directory) -> List[float]:
+    def read(self, file: BaseFile) -> List[float]:
         ...
         # print("Read Noise from file body")
 

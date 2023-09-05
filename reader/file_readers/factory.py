@@ -1,8 +1,8 @@
 from typing import Callable
 
-from ..constants import IndexType, DataType
-from ..base_file_reader import FileReader
-from ..base_factory import BaseFileReaderFactory, ClassNotFoundError
+from reader.constants import IndexType, DataType
+from reader.base_file_reader import FileReader
+from reader.base_factory import BaseFileReaderFactory, ClassNotFoundError
 
 from .result_reader import R2Reader, SignalsReader, NoisesReader
 from .index_reader import SerialNumberReader, AngleReader, DateReader, FrequenciesReader

@@ -1,12 +1,14 @@
 import unittest
 
-from reader.data_reader import DataReader
 from .test_data_sets import (TEST_DATA_DIRS, test_filename_set, test_index_number_answer_set, test_data_r2_answer_set,
                              test_index_angle_answer_set)
 
-from reader.constants import IndexType, DataType
 from reader.file_readers.index_reader import SerialNumberReader, AngleReader
 from reader.file_readers.result_reader import R2Reader
+from reader.file_readers.file import File
+
+from reader.constants import IndexType, DataType
+from reader.data_reader import DataReader
 from reader.directory import Dir
 
 
@@ -61,14 +63,16 @@ class TestIndexReaders(unittest.TestCase):
 
         reader = SerialNumberReader()
         for filename, answer in zip(test_filename_set, test_index_number_answer_set):
-            self.assertEqual(reader.read(filename), answer)
+            file = File(file_name=filename, directory=Dir(""))
+            self.assertEqual(reader.read(file), answer)
 
     def test_correct_value_angle_reader(self):
         """Тестирует, что чтец AngleReader возвращает корректные значения"""
 
         reader = AngleReader()
         for filename, answer in zip(test_filename_set, test_index_angle_answer_set):
-            self.assertEqual(reader.read(filename), answer)
+            file = File(file_name=filename, directory=Dir(""))
+            self.assertEqual(reader.read(file), answer)
 
 
 class TestResultReaders(unittest.TestCase):
@@ -78,5 +82,5 @@ class TestResultReaders(unittest.TestCase):
 
         reader = R2Reader()
         for filename, answer in zip(test_filename_set, test_data_r2_answer_set):
-            self.assertEqual(reader.read(filename, ), answer)
-
+            file = File(file_name=filename, directory=Dir(""))
+            self.assertEqual(reader.read(file, ), answer)

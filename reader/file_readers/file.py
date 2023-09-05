@@ -16,12 +16,12 @@ class File(BaseFile):
 
     def get_index(self, index_type: IndexType) -> Union[float, List[float]]:
         index_reader = self.file_reader_factory.get_index_reader(index_type)
-        index = index_reader.read(self.name, self.dir)
+        index = index_reader.read(file=self)
         return index
 
     def get_data(self, data_type: DataType) -> Union[float, List[float]]:
         data_reader = self.file_reader_factory.get_data_reader(data_type)
-        data = data_reader.read(self.name, self.dir)
+        data = data_reader.read(file=self)
         return data
 
     def __repr__(self):
