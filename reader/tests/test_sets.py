@@ -1,3 +1,5 @@
+import datetime
+
 TEST_DATA_DIRS = [r'tests\data\ВМЦ-45ЖК\2022',
                   r'tests\data\ВМЦ-45ЖК\2023-1',
                   r'tests\data\ВМЦ-45ЖК\2023-2',
@@ -63,9 +65,6 @@ test_data_r2_answer_set = [
     30,
 ]
 
-test_index_date_answer_set = [
-
-]
 
 test_file_name = r'Е 2200101 VGA R2=6 Ft=54.txt'
 test_dir = r'tests\data\ВМЦ-45ЖК\2022'
@@ -78,3 +77,5 @@ test_index_frequencies_answer_set = [
     486.0,
     594.0,
 ]
+
+test_index_date_answer = datetime.datetime.strptime("25.02.2022 09:36", "%d.%m.%Y %H:%M")

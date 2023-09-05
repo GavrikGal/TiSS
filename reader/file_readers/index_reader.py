@@ -1,5 +1,6 @@
 import os
 import re
+
 import pandas as pd
 from datetime import datetime
 from typing import List, Union
@@ -24,8 +25,8 @@ class AngleReader(BaseFileReader):
 
 class DateReader(BaseFileReader):
     def read(self, file: BaseFile) -> datetime:
-        ...
-        # print("Read Date from file attribute")
+        mtime = os.path.getmtime(os.path.join(file.dir.path, file.name))
+        return datetime.fromtimestamp(mtime)
 
 
 class FrequenciesReader(BaseFileReader):

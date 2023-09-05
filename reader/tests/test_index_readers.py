@@ -1,10 +1,12 @@
 import unittest
+from datetime import timedelta
 
 from .test_sets import (test_filename_set, test_index_number_answer_set,
                         test_index_angle_answer_set, test_file_name, test_dir,
-                        test_index_frequencies_answer_set)
+                        test_index_frequencies_answer_set, test_index_date_answer)
 
-from reader.file_readers.index_reader import SerialNumberReader, AngleReader, FrequenciesReader
+from reader.file_readers.index_reader import (SerialNumberReader, AngleReader,
+                                              FrequenciesReader, DateReader)
 from reader.file_readers.file import File
 from reader.file_readers.directory import Dir
 
@@ -32,5 +34,12 @@ class TestIndexReaders(unittest.TestCase):
 
         reader = FrequenciesReader()
         file = File(file_name=test_file_name, directory=Dir(test_dir))
-
         self.assertEqual(reader.read(file), test_index_frequencies_answer_set)
+
+    def test_correct_value_date_reader(self):
+        """Тестирует, что чтец DateReader возвращает корректные значения"""
+
+        reader = DateReader()
+        file = File(file_name=test_file_name, directory=Dir(test_dir))
+        self.assertAlmostEqual(reader.read(file), test_index_date_answer,
+                               delta=timedelta(minutes=1))
