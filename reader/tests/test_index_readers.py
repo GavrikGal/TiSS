@@ -1,7 +1,7 @@
 import unittest
 
-from .test_data_sets import (test_filename_set, test_index_number_answer_set,
-                             test_index_angle_answer_set)
+from .test_sets import (test_filename_set, test_index_number_answer_set,
+                        test_index_angle_answer_set)
 
 from reader.file_readers.index_reader import SerialNumberReader, AngleReader
 from reader.file_readers.file import File

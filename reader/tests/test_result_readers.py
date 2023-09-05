@@ -1,6 +1,6 @@
 import unittest
 
-from .test_data_sets import (test_filename_set, test_data_r2_answer_set,)
+from .test_sets import (test_filename_set, test_data_r2_answer_set, )
 
 from reader.file_readers.result_reader import R2Reader
 from reader.file_readers.file import File

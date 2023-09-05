@@ -1,6 +1,6 @@
 import unittest
 
-from .test_data_sets import TEST_DATA_DIRS
+from .test_sets import TEST_DATA_DIRS
 
 from reader.constants import IndexType, DataType
 from reader.data_reader import DataReader
