@@ -2,12 +2,12 @@ from abc import ABC, abstractmethod
 from typing import Union, List
 
 from reader.constants import IndexType, DataType
-from reader.directory import Dir
+from reader.base_directory import BaseDirectory
 
 
 class BaseFile(ABC):
     name: str
-    dir: Dir
+    dir: BaseDirectory
 
     @abstractmethod
     def get_index(self, index_type: IndexType) -> Union[float, List[float]]:

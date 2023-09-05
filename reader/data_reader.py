@@ -3,7 +3,7 @@ from typing import List
 
 
 from file_set import FileSet
-from directory import Dir
+from reader.file_readers.directory import Dir
 from constants import IndexType, DataType
 
 

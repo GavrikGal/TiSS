@@ -9,7 +9,7 @@ from reader.file_readers.file import File
 
 from reader.constants import IndexType, DataType
 from reader.data_reader import DataReader
-from reader.directory import Dir
+from reader.file_readers.directory import Dir
 
 
 class TestDataReader(unittest.TestCase):

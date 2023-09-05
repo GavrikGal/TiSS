@@ -4,9 +4,6 @@ from datetime import datetime
 
 from base_file import BaseFile
 
-# class EmptyReaderException(Exception):
-#     pass
-
 
 class FileReader(ABC):
     """Абстракция чтеца данных из файла"""

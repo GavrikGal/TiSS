@@ -3,13 +3,13 @@ from reader.constants import DataType, IndexType
 from reader.base_file import BaseFile
 
 from .factory import FileReaderFactory
-from reader.directory import Dir
+from reader.base_directory import BaseDirectory
 
 
 class File(BaseFile):
     """Файл"""
 
-    def __init__(self, file_name: str, directory: Dir):
+    def __init__(self, file_name: str, directory: BaseDirectory):
         self.name = file_name
         self.dir = directory
         self.file_reader_factory = FileReaderFactory()
