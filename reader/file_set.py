@@ -7,7 +7,7 @@ from constants import DataType, IndexType
 class FileSet:
     """Выборка файлов"""
     def __init__(self, directory: Dir):
-        self.files = [File(file_name) for file_name in directory.get_file_list()]
+        self.files = [File(file_name, directory) for file_name in directory.get_file_list()]
 
     def read_all_from_file_set(self, index_type: IndexType, data_type: DataType):
         indexes = [file.get_index(index_type) for file in self.files]

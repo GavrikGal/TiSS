@@ -6,7 +6,7 @@ from reader.base_file_reader import FileReader
 
 class R2Reader(FileReader):
 
-    def read(self, filename) -> float:
+    def read(self, filename, directory) -> float:
         if 'R2=' in filename:
             part_with_r2 = filename.split("R2=")[1].split(" ")[0]
             r2 = re.search(r'([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))', part_with_r2)[0]
@@ -19,13 +19,13 @@ class R2Reader(FileReader):
 
 
 class SignalsReader(FileReader):
-    def read(self, filename) -> List[float]:
+    def read(self, filename, directory) -> List[float]:
         ...
         # print("Read Signal from file body")
 
 
 class NoisesReader(FileReader):
-    def read(self, filename) -> List[float]:
+    def read(self, filename, directory) -> List[float]:
         ...
         # print("Read Noise from file body")
 

@@ -5,7 +5,7 @@ from ..base_file_reader import FileReader
 from ..base_factory import BaseFileReaderFactory, ClassNotFoundError
 
 from .result_reader import R2Reader, SignalsReader, NoisesReader
-from .index_reader import SerialNumberReader, AngelReader, DateReader, FrequenciesReader
+from .index_reader import SerialNumberReader, AngleReader, DateReader, FrequenciesReader
 
 
 class FileReaderFactory(BaseFileReaderFactory):
@@ -21,7 +21,7 @@ class FileReaderFactory(BaseFileReaderFactory):
 
         classes: dict[IndexType, Callable[..., FileReader]] = {
             IndexType.Number: SerialNumberReader,
-            IndexType.Angel: AngelReader,
+            IndexType.Angel: AngleReader,
             IndexType.Date: DateReader,
             IndexType.Frequency: FrequenciesReader,
         }
