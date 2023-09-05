@@ -1,14 +1,15 @@
 import pandas as pd
 
-from reader.file_readers.file import File
+from reader.base_file_set import BaseFileSet
+from reader.base_directory import BaseDirectory
+from reader.constants import DataType, IndexType
 
-from reader.file_readers.directory import Dir
-from constants import DataType, IndexType
+from .file import File
 
 
-class FileSet:
+class FileSet(BaseFileSet):
     """Выборка файлов"""
-    def __init__(self, directory: Dir):
+    def __init__(self, directory: BaseDirectory):
         self.files = [File(file_name, directory) for file_name in directory.get_file_list()]
 
     def read_all_from_file_set(self, index_type: IndexType, data_type: DataType):
