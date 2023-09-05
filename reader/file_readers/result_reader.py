@@ -1,5 +1,8 @@
+import os
 import re
 from typing import List
+
+import pandas as pd
 
 from reader.base_file_reader import BaseFileReader
 from reader.base_file import BaseFile
@@ -21,14 +24,16 @@ class R2Reader(BaseFileReader):
 
 class SignalsReader(BaseFileReader):
     def read(self, file: BaseFile) -> List[float]:
-        ...
-        # print("Read Signal from file body")
+        signals = pd.read_csv(os.path.join(file.dir.path, file.name), sep='\t', encoding='cp1251',
+                              usecols=[2], skiprows=2, names=['signal'])
+        return signals['signal'].tolist()
 
 
 class NoisesReader(BaseFileReader):
     def read(self, file: BaseFile) -> List[float]:
-        ...
-        # print("Read Noise from file body")
+        noises = pd.read_csv(os.path.join(file.dir.path, file.name), sep='\t', encoding='cp1251',
+                             usecols=[3], skiprows=2, names=['noise'])
+        return noises['noise'].tolist()
 
 
 

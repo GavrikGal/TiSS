@@ -69,7 +69,7 @@ test_data_r2_answer_set = [
 test_file_name = r'Е 2200101 VGA R2=6 Ft=54.txt'
 test_dir = r'tests\data\ВМЦ-45ЖК\2022'
 
-test_index_frequencies_answer_set = [
+test_index_frequencies_answer = [
     54.0,
     162.0,
     270.0,
@@ -79,3 +79,21 @@ test_index_frequencies_answer_set = [
 ]
 
 test_index_date_answer = datetime.datetime.strptime("25.02.2022 09:36", "%d.%m.%Y %H:%M")
+
+test_data_signals_answer = [
+    32.77,
+    28.15,
+    33.20,
+    22.44,
+    25.01,
+    27.59
+]
+
+test_data_noise_answer = [
+    12.00,
+    11.00,
+    10.00,
+    9.00,
+    8.00,
+    20.00
+]

@@ -13,7 +13,7 @@ class FileSet(BaseFileSet):
         self.files = [File(file_name, directory) for file_name in directory.get_file_list()]
 
     def read_all_from_file_set(self, index_type: IndexType, data_type: DataType):
-        indexes = [file.get_index(index_type) for file in self.files]
+        indexes = list({file.get_index(index_type) for file in self.files})  # set() обеспечивает уникальность индексов
         data = [file.get_data(data_type) for file in self.files]
 
         if not indexes or not data:
