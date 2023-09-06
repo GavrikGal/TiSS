@@ -30,7 +30,7 @@ class FileReaderFactory(BaseFileReaderFactory):
         if class_ is not None:
             return class_()
 
-        raise ClassNotFoundError
+        raise ClassNotFoundError(f'IndexReader with Type: [{index_type}] not Found')
 
     @staticmethod
     def get_data_reader(data_type: DataType) -> BaseFileReader:
@@ -46,4 +46,4 @@ class FileReaderFactory(BaseFileReaderFactory):
         if class_ is not None:
             return class_()
 
-        raise ClassNotFoundError
+        raise ClassNotFoundError(f'DataReader with Type: [{data_type}] not Found')
