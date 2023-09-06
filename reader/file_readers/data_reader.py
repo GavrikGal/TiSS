@@ -1,12 +1,14 @@
 from typing import List
 
+from reader.constants import IndexType, DataType
 from reader.base_data_frame import BaseDataFrame
+from reader.base_data_reader import BaseDataReader
+
 from reader.file_readers.file_set import FileSet
 from reader.file_readers.directory import Dir
-from constants import IndexType, DataType
 
 
-class DataReader:
+class DataReader(BaseDataReader):
     """Читает данные из переданных папок"""
     def __init__(self):
         self.file_set_container: List[FileSet] = []
@@ -21,7 +23,7 @@ class DataReader:
         """Установить тип индекса"""
         self.data_type = data_type
 
-    def set_file_sets_container(self, dir_names: List[str]):
+    def init_file_sets_container(self, dir_names: List[str]):
         """Установить контейнер выборок файлов"""
         self.file_set_container = [FileSet(Dir(dir_name))
                                    for dir_name in dir_names]

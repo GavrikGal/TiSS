@@ -1,10 +1,10 @@
 import unittest
 from pandas.testing import assert_frame_equal
 
-from .test_sets import TEST_DATA_DIRS, test_data_read_answer_sets, test_df_name_answer_set
+from .test_sets import test_data_dirs, test_data_read_answer_sets, test_df_name_answer_set
 
 from reader.constants import IndexType, DataType
-from reader.data_reader import DataReader
+from reader.file_readers.data_reader import DataReader
 
 
 class TestDataReader(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestDataReader(unittest.TestCase):
     def test_after_read_data_df_has_name(self):
         """Тестирует, что прочитанные ДатаФреймы имеют имя"""
         data_reader = DataReader()
-        data_reader.set_file_sets_container(TEST_DATA_DIRS)
+        data_reader.init_file_sets_container(test_data_dirs)
         data_reader.set_index_type(IndexType.Number)
         data_reader.set_data_type(DataType.R2)
         data = data_reader.read_data()
@@ -22,7 +22,7 @@ class TestDataReader(unittest.TestCase):
     def test_read_data(self):
         """Тестирует, что по переданным, при конструировании параметрам, читаются данные"""
         data_reader = DataReader()
-        data_reader.set_file_sets_container(TEST_DATA_DIRS)
+        data_reader.init_file_sets_container(test_data_dirs)
         data_reader.set_index_type(IndexType.Number)
         data_reader.set_data_type(DataType.R2)
         data = data_reader.read_data()
@@ -41,14 +41,14 @@ class TestDataReader(unittest.TestCase):
     def test_validate_init_data_without_index_type_raise_error(self):
         """Тестирует, что валидация инициированных значений без типа индексов вызывает ошибку"""
         data_reader = DataReader()
-        data_reader.set_file_sets_container(TEST_DATA_DIRS)
+        data_reader.init_file_sets_container(test_data_dirs)
         data_reader.set_data_type(DataType.R2)
         self.assertRaises(ValueError, data_reader.validate_init_data)
 
     def test_validate_init_data_without_data_type_raise_error(self):
         """Тестирует, что валидация инициированных значений без типа данных вызывает ошибку"""
         data_reader = DataReader()
-        data_reader.set_file_sets_container(TEST_DATA_DIRS)
+        data_reader.init_file_sets_container(test_data_dirs)
         data_reader.set_index_type(IndexType.Number)
         self.assertRaises(ValueError, data_reader.validate_init_data)
 

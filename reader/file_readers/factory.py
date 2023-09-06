@@ -26,7 +26,7 @@ class FileReaderFactory(BaseFileReaderFactory):
             IndexType.Frequency: FrequenciesReader,
         }
 
-        class_ = classes.get(IndexType.Number, None)
+        class_ = classes.get(index_type, None)
         if class_ is not None:
             return class_()
 
