@@ -1,7 +1,6 @@
-import pandas as pd
 from typing import List
 
-
+from reader.base_data_frame import BaseDataFrame
 from reader.file_readers.file_set import FileSet
 from reader.file_readers.directory import Dir
 from constants import IndexType, DataType
@@ -46,9 +45,10 @@ class DataReader:
         self.validate_data_type()
         return True
 
-    def read_data(self) -> List[pd.DataFrame]:
+    def read_data(self) -> List[BaseDataFrame]:
         """Прочитать и вернуть данные из заданных в контейнере выборок файлов"""
         self.validate_init_data()
         data = [file_set.read_all_from_file_set(self.index_type, self.data_type)
                 for file_set in self.file_set_container]
+
         return data

@@ -1,13 +1,23 @@
 import unittest
 from pandas.testing import assert_frame_equal
 
-from .test_sets import TEST_DATA_DIRS, test_data_read_answer_sets
+from .test_sets import TEST_DATA_DIRS, test_data_read_answer_sets, test_df_name_answer_set
 
 from reader.constants import IndexType, DataType
 from reader.data_reader import DataReader
 
 
 class TestDataReader(unittest.TestCase):
+
+    def test_after_read_data_df_has_name(self):
+        """Тестирует, что прочитанные ДатаФреймы имеют имя"""
+        data_reader = DataReader()
+        data_reader.set_file_sets_container(TEST_DATA_DIRS)
+        data_reader.set_index_type(IndexType.Number)
+        data_reader.set_data_type(DataType.R2)
+        data = data_reader.read_data()
+        names = [df.name for df in data]
+        self.assertEqual(names, test_df_name_answer_set)
 
     def test_read_data(self):
         """Тестирует, что по переданным, при конструировании параметрам, читаются данные"""
