@@ -51,8 +51,4 @@ class DataReader:
         self.validate_init_data()
         data = [file_set.read_all_from_file_set(self.index_type, self.data_type)
                 for file_set in self.file_set_container]
-        # print(data)
         return data
-
-
-
