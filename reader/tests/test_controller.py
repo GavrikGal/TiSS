@@ -3,7 +3,7 @@ import unittest
 from .test_sets import test_data_dirs
 
 from reader.constants import IndexType, DataType
-from reader.controller import PlotController
+from controller.controller import PlotController
 from reader.file_readers.data_reader import DataReader
 
 

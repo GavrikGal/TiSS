@@ -1,6 +1,6 @@
 from typing import List
 
-from constants import IndexType, DataType
+from reader.constants import IndexType, DataType
 from reader.base_data_reader import BaseDataReader
 
 

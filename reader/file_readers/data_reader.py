@@ -1,7 +1,7 @@
 from typing import List
 
 from reader.constants import IndexType, DataType
-from reader.base_data_frame import BaseDataFrame
+from data.base_data_frame import BaseDataFrame
 from reader.base_data_reader import BaseDataReader
 
 from reader.file_readers.file_set import FileSet

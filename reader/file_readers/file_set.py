@@ -1,8 +1,6 @@
-from typing import List
-
 import pandas as pd
 
-from reader.data_handler.data_frame import DataFrame
+from data.frame.data_frame import DataFrame
 from reader.base_file_set import BaseFileSet
 from reader.base_directory import BaseDirectory
 from reader.constants import DataType, IndexType

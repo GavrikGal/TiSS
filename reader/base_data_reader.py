@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from constants import IndexType, DataType
-from reader.base_data_frame import BaseDataFrame
+from data.base_data_frame import BaseDataFrame
 from reader.base_file_set import BaseFileSet
 
 
