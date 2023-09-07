@@ -1,5 +1,7 @@
 from typing import List
 
+import pandas as pd
+
 from reader.data_handler.data_frame import DataFrame
 from reader.base_file_set import BaseFileSet
 from reader.base_directory import BaseDirectory
@@ -15,17 +17,13 @@ class FileSet(BaseFileSet):
         self.directory = directory
         self.files = [File(file_name, directory) for file_name in directory.get_file_list()]
 
-    def read_all_from_file_set(self, index_type: IndexType, data_type: DataType):
-        indexes = list(self.unique([file.get_index(index_type) for file in self.files])).sort()
-        print(indexes)
-        data = [file.get_data(data_type) for file in self.files]
-
-        if not indexes or not data:
-            raise ValueError("Error in Indexes when was creating DataFrame")
-        if not data:
-            raise ValueError("Error in Data when was creating DataFrame")
-
-        df = DataFrame(data, index=indexes)
+    def get_df_from_all_file_set(self, index_type: IndexType, data_type: DataType):
+        data_set = [file.get_dataframe(index_type, data_type) for file in self.files]
+        axis = 0
+        if data_set[0].shape[0] > 1:  # в ДатаФрейме больше одного значения - объединять столбцами
+            axis = 1
+        data = pd.concat(data_set, axis=axis)
+        df = DataFrame(data)
         df.name = str(self.directory)
         return df
 
@@ -34,18 +32,3 @@ class FileSet(BaseFileSet):
 
     def __str__(self):
         return str(self.files)
-
-    def unique(self, lists: List[object]) -> List[object]:
-        set_ = set()
-        for list_ in lists:
-            if not isinstance(list_, list):
-
-                set_.add(list_)
-            else:
-
-                inner_set = self.unique(list_)
-                set_.update(inner_set)
-
-        print(set_)
-
-        return set_

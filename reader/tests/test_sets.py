@@ -66,6 +66,19 @@ test_data_r2_answer_set = [
 test_file_name = r'Е 2200101 VGA R2=6 Ft=54.txt'
 test_dir = r'tests\data\ВМЦ-45ЖК\2022'
 
+test_file_get_dataframe_answer = pd.DataFrame([6.0], index=['2200101'])
+test_file_get_dataframe_freq_and_signal_answer = pd.DataFrame([32.77,
+                                                               28.15,
+                                                               33.20,
+                                                               22.44,
+                                                               25.01,
+                                                               27.59], index=[54.0,
+                                                                              162.0,
+                                                                              270.0,
+                                                                              378.0,
+                                                                              486.0,
+                                                                              594.0])
+
 test_index_frequencies_answer = [
     54.0,
     162.0,

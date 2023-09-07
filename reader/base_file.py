@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Union, List
 
+import pandas as pd
+
 from reader.constants import IndexType, DataType
 from reader.base_directory import BaseDirectory
 
@@ -14,5 +16,9 @@ class BaseFile(ABC):
         """Получить индекс(ы) требуемого типа"""
 
     @abstractmethod
-    def get_data(self, data_type: DataType) -> Union[float, List[float]]:
+    def get_value(self, data_type: DataType) -> Union[float, List[float]]:
         """Получить данные требуемого типа"""
+
+    @abstractmethod
+    def get_dataframe(self, index_type: IndexType, data_type: DataType) -> pd.DataFrame:
+        """Получить ДатаФрейм с данными и индексами требуемого типа"""

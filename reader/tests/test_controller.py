@@ -9,9 +9,20 @@ from reader.file_readers.data_reader import DataReader
 
 class TestPlotController(unittest.TestCase):
 
-    def test_after_read_data_df_has_name(self):
-        """Тестирует, контроллер построения графиков"""
+    def test_plot_freq_and_signal(self):
+        """Тестирует, построение графиков частоты и сигнала"""
 
-        controller = PlotController()
-        controller.init_data_reader(IndexType.Frequency, DataType.Signal, test_data_dirs, DataReader())
+        controller = PlotController(IndexType.Frequency,
+                                    DataType.Signal,
+                                    test_data_dirs,
+                                    DataReader())
+        controller.plot()
+
+    def test_plot_number_and_r2(self):
+        """Тестирует, построение графиков серийного номера и R2"""
+
+        controller = PlotController(IndexType.Number,
+                                    DataType.R2,
+                                    test_data_dirs,
+                                    DataReader())
         controller.plot()

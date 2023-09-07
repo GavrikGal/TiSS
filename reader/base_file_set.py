@@ -13,5 +13,5 @@ class BaseFileSet(ABC):
     files: List[BaseFile]
 
     @abstractmethod
-    def read_all_from_file_set(self, index_type: IndexType, data_type: DataType) -> BaseDataFrame:
+    def get_df_from_all_file_set(self, index_type: IndexType, data_type: DataType) -> BaseDataFrame:
         """Чтение всех данных из всех файлов выборки"""

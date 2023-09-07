@@ -50,7 +50,7 @@ class DataReader(BaseDataReader):
     def read_data(self) -> List[BaseDataFrame]:
         """Прочитать и вернуть данные из заданных в контейнере выборок файлов"""
         self.validate_init_data()
-        data = [file_set.read_all_from_file_set(self.index_type, self.data_type)
+        data = [file_set.get_df_from_all_file_set(self.index_type, self.data_type)
                 for file_set in self.file_set_container]
 
         return data

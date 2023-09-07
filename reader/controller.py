@@ -6,11 +6,8 @@ from reader.base_data_reader import BaseDataReader
 
 class PlotController:
 
-    def __init__(self):
-        self.data_reader: BaseDataReader
-
-    def init_data_reader(self, index_type: IndexType, data_type: DataType,
-                         dir_names: List[str], data_reader: BaseDataReader):
+    def __init__(self, index_type: IndexType, data_type: DataType,
+                 dir_names: List[str], data_reader: BaseDataReader):
         self.data_reader = data_reader
         self.data_reader.set_index_type(index_type)
         self.data_reader.set_data_type(data_type)
@@ -22,4 +19,3 @@ class PlotController:
         data = self.data_reader.read_data()
 
         # todo: доделать
-        print(data)
