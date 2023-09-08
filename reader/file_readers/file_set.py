@@ -1,10 +1,10 @@
 import pandas as pd
+from typing import Union
 
 from data.frame.data_frame import DataFrame
 from reader.base_file_set import BaseFileSet
 from reader.base_directory import BaseDirectory
-from reader.constants import DataType, IndexType
-
+from reader.constants import DataType, IndexType, ColumnType
 
 from .file import File
 
@@ -15,8 +15,9 @@ class FileSet(BaseFileSet):
         self.directory = directory
         self.files = [File(file_name, directory) for file_name in directory.get_file_list()]
 
-    def get_df_from_all_file_set(self, index_type: IndexType, data_type: DataType):
-        data_set = [file.get_dataframe(index_type, data_type) for file in self.files]
+    def get_df_from_all_file_set(self, index_type: IndexType, data_type: DataType,
+                                 column_type: Union[None, ColumnType]):
+        data_set = [file.get_dataframe(index_type, data_type, column_type) for file in self.files]
         axis = 0
         if data_set[0].shape[0] > 1:  # в ДатаФрейме больше одного значения - объединять столбцами
             axis = 1

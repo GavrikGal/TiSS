@@ -1,6 +1,6 @@
-from typing import Callable
+from typing import Callable, Union
 
-from reader.constants import IndexType, DataType
+from reader.constants import IndexType, DataType, ColumnType
 from reader.base_file_reader import BaseFileReader
 from reader.base_factory import BaseFileReaderFactory, ClassNotFoundError
 
@@ -15,8 +15,9 @@ class FileReaderFactory(BaseFileReaderFactory):
             cls.instance = super(FileReaderFactory, cls).__new__(cls)
         return cls.instance
 
+    # todo: изменить имя метода
     @staticmethod
-    def get_index_reader(index_type: IndexType) -> BaseFileReader:
+    def get_index_reader(index_type: Union[IndexType, ColumnType]) -> BaseFileReader:
         """Возвращает экземпляр класса для чтения индексов"""
 
         classes: dict[IndexType, Callable[..., BaseFileReader]] = {

@@ -13,7 +13,7 @@ class TestPlotController(unittest.TestCase):
 
         controller = PlotController(IndexType.Frequency,
                                     DataType.Signal,
-                                    test_data_dirs)
+                                    test_data_dirs, column_type=None)
         controller.plot()
 
     def test_plot_number_and_r2(self):
@@ -21,5 +21,5 @@ class TestPlotController(unittest.TestCase):
 
         controller = PlotController(IndexType.Number,
                                     DataType.R2,
-                                    test_data_dirs)
+                                    test_data_dirs, column_type=None)
         controller.plot()

@@ -77,7 +77,11 @@ test_file_get_dataframe_freq_and_signal_answer = pd.DataFrame([32.77,
                                                                               270.0,
                                                                               378.0,
                                                                               486.0,
-                                                                              594.0])
+                                                                              594.0],)
+test_file_get_dataframe_columns_answer = ['2200101', '2200201', '2200301', '2200401',
+                                          '2200501', '2200601', '2200701', '2200801',
+                                          '2200901', '2201001', '2202101', '2202501',
+                                          '2203101', '2203401']
 
 test_index_frequencies_answer = [
     54.0,

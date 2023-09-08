@@ -2,7 +2,7 @@ from typing import Union, List
 
 import pandas as pd
 
-from reader.constants import DataType, IndexType
+from reader.constants import DataType, IndexType, ColumnType
 from reader.base_file import BaseFile
 from reader.base_directory import BaseDirectory
 
@@ -20,22 +20,35 @@ class File(BaseFile):
     def get_index(self, index_type: IndexType) -> Union[float, List[float]]:
         index_reader = self.file_reader_factory.get_index_reader(index_type)
         index = index_reader.read(file=self)
+        if not isinstance(index, list):
+            index = [index]
         return index
 
     def get_value(self, data_type: DataType) -> Union[float, List[float]]:
         data_reader = self.file_reader_factory.get_data_reader(data_type)
         data = data_reader.read(file=self)
-        return data
-
-    def get_dataframe(self, index_type: IndexType, data_type: DataType) -> pd.DataFrame:
-        index = self.get_index(index_type)
-        if not isinstance(index, list):
-            index = [index]
-        data = self.get_value(data_type)
         if not isinstance(data, list):
             data = [data]
-        # todo: Можно задать имя, которое будет именем колонки
-        df = pd.DataFrame(data, index=index)
+        return data
+
+    def get_column(self, column_type: Union[None, ColumnType]) -> Union[float, List[float]]:
+        # todo: переименовать index_reader на options_reader или что-то типо того
+        columns = None
+        if column_type:
+            column_reader = self.file_reader_factory.get_index_reader(column_type)
+            columns = column_reader.read(file=self)
+            if not isinstance(columns, list):
+                columns = [columns]
+        return columns
+
+    def get_dataframe(self, index_type: IndexType, data_type: DataType,
+                      column_type: Union[None, ColumnType]) -> pd.DataFrame:
+
+        index = self.get_index(index_type)
+        data = self.get_value(data_type)
+        columns = self.get_column(column_type)
+
+        df = pd.DataFrame(data, columns=columns, index=index)
         return df
 
     def __repr__(self):

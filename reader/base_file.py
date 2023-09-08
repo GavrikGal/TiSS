@@ -3,7 +3,7 @@ from typing import Union, List
 
 import pandas as pd
 
-from reader.constants import IndexType, DataType
+from reader.constants import IndexType, DataType, ColumnType
 from reader.base_directory import BaseDirectory
 
 
@@ -20,5 +20,6 @@ class BaseFile(ABC):
         """Получить данные требуемого типа"""
 
     @abstractmethod
-    def get_dataframe(self, index_type: IndexType, data_type: DataType) -> pd.DataFrame:
+    def get_dataframe(self, index_type: IndexType, data_type: DataType,
+                      column_type: Union[None, ColumnType]) -> pd.DataFrame:
         """Получить ДатаФрейм с данными и индексами требуемого типа"""

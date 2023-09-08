@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Union
 
-from constants import IndexType, DataType
+from constants import IndexType, DataType, ColumnType
 from data.base_data_frame import BaseDataFrame
 from reader.base_file_set import BaseFileSet
 
@@ -14,7 +14,7 @@ class BaseDataReader(ABC):
 
     @abstractmethod
     def __init__(self, index_type: IndexType, data_type: DataType,
-                 dir_names: List[str]):
+                 dir_names: List[str], column_type: Union[None, ColumnType]):
         """Инициализация чтеца данных"""
 
     @abstractmethod
