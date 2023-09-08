@@ -4,7 +4,6 @@ from .test_sets import test_data_dirs
 
 from reader.constants import IndexType, DataType
 from controller.controller import PlotController
-from reader.file_readers.data_reader import DataReader
 
 
 class TestPlotController(unittest.TestCase):
@@ -14,8 +13,7 @@ class TestPlotController(unittest.TestCase):
 
         controller = PlotController(IndexType.Frequency,
                                     DataType.Signal,
-                                    test_data_dirs,
-                                    DataReader())
+                                    test_data_dirs)
         controller.plot()
 
     def test_plot_number_and_r2(self):
@@ -23,6 +21,5 @@ class TestPlotController(unittest.TestCase):
 
         controller = PlotController(IndexType.Number,
                                     DataType.R2,
-                                    test_data_dirs,
-                                    DataReader())
+                                    test_data_dirs)
         controller.plot()

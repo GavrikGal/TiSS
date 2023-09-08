@@ -13,32 +13,13 @@ class BaseDataReader(ABC):
     data_type: DataType
 
     @abstractmethod
-    def set_index_type(self, index_type: IndexType):
-        """Установить тип индекса"""
+    def __init__(self, index_type: IndexType, data_type: DataType,
+                 dir_names: List[str]):
+        """Инициализация чтеца данных"""
 
     @abstractmethod
-    def set_data_type(self, data_type: DataType):
-        """Установить тип данных"""
-
-    @abstractmethod
-    def init_file_sets_container(self, dir_names: List[str]):
+    def get_file_set_container(self, dir_names: List[str]):
         """Установить контейнер выборок файлов"""
-
-    @abstractmethod
-    def validate_file_set_container(self):
-        """Проверить наличие контейнера выборок файлов"""
-
-    @abstractmethod
-    def validate_index_type(self):
-        """Проверить наличие установленного типа индексов"""
-
-    @abstractmethod
-    def validate_data_type(self):
-        """Проверить наличие установленного типа данных"""
-
-    @abstractmethod
-    def validate_init_data(self) -> bool:
-        """Проверяет правильность установки всех инициирующих данных"""
 
     @abstractmethod
     def read_data(self) -> List[BaseDataFrame]:
