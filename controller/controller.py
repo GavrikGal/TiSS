@@ -14,5 +14,5 @@ class PlotController:
         """Контроллер построения графиков"""
 
         data = self.data_reader.read_data()
-        print(data)
+        # print(data)
         # todo: доделать

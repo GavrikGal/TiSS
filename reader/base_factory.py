@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
+from typing import Union
 
-from constants import IndexType, DataType
+from constants import IndexType, ColumnType, DataType
 from base_file_reader import BaseFileReader
 
 
@@ -13,7 +14,7 @@ class BaseFileReaderFactory(ABC):
 
     @staticmethod
     @abstractmethod
-    def get_index_reader(index_type: IndexType) -> BaseFileReader:
+    def get_attribute_reader(attribute_type: Union[IndexType, ColumnType]) -> BaseFileReader:
         """Возвращает экземпляр класса для чтения индексов"""
 
     @staticmethod

@@ -17,8 +17,18 @@ class File(BaseFile):
         self.dir = directory
         self.file_reader_factory = FileReaderFactory()
 
+    def get_dataframe(self, index_type: IndexType, data_type: DataType,
+                      column_type: Union[None, ColumnType]) -> pd.DataFrame:
+
+        index = self.get_index(index_type)
+        data = self.get_value(data_type)
+        columns = self.get_column(column_type)
+
+        df = pd.DataFrame(data, columns=columns, index=index)
+        return df
+
     def get_index(self, index_type: IndexType) -> Union[float, List[float]]:
-        index_reader = self.file_reader_factory.get_index_reader(index_type)
+        index_reader = self.file_reader_factory.get_attribute_reader(index_type)
         index = index_reader.read(file=self)
         if not isinstance(index, list):
             index = [index]
@@ -32,24 +42,13 @@ class File(BaseFile):
         return data
 
     def get_column(self, column_type: Union[None, ColumnType]) -> Union[float, List[float]]:
-        # todo: переименовать index_reader на options_reader или что-то типо того
         columns = None
         if column_type:
-            column_reader = self.file_reader_factory.get_index_reader(column_type)
+            column_reader = self.file_reader_factory.get_attribute_reader(column_type)
             columns = column_reader.read(file=self)
             if not isinstance(columns, list):
                 columns = [columns]
         return columns
-
-    def get_dataframe(self, index_type: IndexType, data_type: DataType,
-                      column_type: Union[None, ColumnType]) -> pd.DataFrame:
-
-        index = self.get_index(index_type)
-        data = self.get_value(data_type)
-        columns = self.get_column(column_type)
-
-        df = pd.DataFrame(data, columns=columns, index=index)
-        return df
 
     def __repr__(self):
         return self.name

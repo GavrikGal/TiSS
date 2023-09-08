@@ -1,11 +1,10 @@
 import unittest
-from pandas.testing import assert_frame_equal
-
-from .test_sets import test_dir, test_file_get_dataframe_columns_answer
 
 from reader.constants import IndexType, DataType, ColumnType
 from reader.file_readers.file_set import FileSet
 from reader.file_readers.directory import Dir
+
+from .test_sets import test_dir, test_file_get_dataframe_columns_answer
 
 
 class TestFileSet(unittest.TestCase):

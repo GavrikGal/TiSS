@@ -18,4 +18,3 @@ class ColumnType(enum.IntFlag):
     Number = 1
     Angel = 2
     Date = 3
-    Frequency = 4

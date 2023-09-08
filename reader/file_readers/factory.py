@@ -15,23 +15,29 @@ class FileReaderFactory(BaseFileReaderFactory):
             cls.instance = super(FileReaderFactory, cls).__new__(cls)
         return cls.instance
 
-    # todo: изменить имя метода
     @staticmethod
-    def get_index_reader(index_type: Union[IndexType, ColumnType]) -> BaseFileReader:
-        """Возвращает экземпляр класса для чтения индексов"""
+    def get_attribute_reader(attribute_type: Union[IndexType, ColumnType]) -> BaseFileReader:
+        """Возвращает экземпляр класса для чтения атрибутов"""
 
-        classes: dict[IndexType, Callable[..., BaseFileReader]] = {
-            IndexType.Number: SerialNumberReader,
-            IndexType.Angel: AngleReader,
-            IndexType.Date: DateReader,
-            IndexType.Frequency: FrequenciesReader,
-        }
+        if isinstance(attribute_type, IndexType):
+            classes: dict[IndexType, Callable[..., BaseFileReader]] = {
+                IndexType.Number: SerialNumberReader,
+                IndexType.Angel: AngleReader,
+                IndexType.Date: DateReader,
+                IndexType.Frequency: FrequenciesReader,
+            }
+        else:
+            classes: dict[ColumnType, Callable[..., BaseFileReader]] = {
+                ColumnType.Number: SerialNumberReader,
+                ColumnType.Angel: AngleReader,
+                ColumnType.Date: DateReader,
+            }
 
-        class_ = classes.get(index_type, None)
+        class_ = classes.get(attribute_type, None)
         if class_ is not None:
             return class_()
 
-        raise ClassNotFoundError(f'IndexReader with Type: [{index_type}] not Found')
+        raise ClassNotFoundError(f'IndexReader with Type: [{attribute_type}] not Found')
 
     @staticmethod
     def get_data_reader(data_type: DataType) -> BaseFileReader:
