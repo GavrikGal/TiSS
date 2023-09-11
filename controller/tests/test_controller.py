@@ -1,6 +1,6 @@
 import unittest
 
-from .test_sets import test_data_dirs
+from reader.tests.test_sets import test_data_dirs
 
 from reader.constants import IndexType, DataType
 from controller.controller import PlotController

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Union
 
-from constants import IndexType, ColumnType, DataType
-from base_file_reader import BaseFileReader
+from .constants import IndexType, ColumnType, DataType
+from .base_file_reader import BaseFileReader
 
 
 class ClassNotFoundError(ValueError):

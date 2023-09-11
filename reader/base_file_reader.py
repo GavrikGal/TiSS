@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Union, List
 from datetime import datetime
 
-from base_file import BaseFile
+from .base_file import BaseFile
 
 
 class BaseFileReader(ABC):

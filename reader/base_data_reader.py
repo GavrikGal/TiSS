@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Union
 
-from constants import IndexType, DataType, ColumnType
+from .constants import IndexType, DataType, ColumnType
 from data.base_data_frame import BaseDataFrame
 from reader.base_file_set import BaseFileSet
 

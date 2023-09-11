@@ -64,7 +64,7 @@ test_data_r2_answer_set = [
 
 
 test_file_name = r'Е 2200101 VGA R2=6 Ft=54.txt'
-test_dir = r'tests\data\ВМЦ-45ЖК\2022'
+test_dir = r'reader\tests\data\ВМЦ-45ЖК\2022'
 
 test_file_get_dataframe_answer = pd.DataFrame([6.0], index=['2200101'])
 test_file_get_dataframe_freq_and_signal_answer = pd.DataFrame([32.77,
@@ -112,9 +112,9 @@ test_data_noise_answer = [
     20.00
 ]
 
-test_data_dirs = [r'tests\data\ВМЦ-45ЖК\2022',
-                  r'tests\data\ВМЦ-45ЖК\2023-1',
-                  r'tests\data\ВМЦ-45ЖК\2023-2',
+test_data_dirs = [r'reader\tests\data\ВМЦ-45ЖК\2022',
+                  r'reader\tests\data\ВМЦ-45ЖК\2023-1',
+                  r'reader\tests\data\ВМЦ-45ЖК\2023-2',
                   ]
 
 test_df_name_answer_set = [
