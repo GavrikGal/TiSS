@@ -9,7 +9,7 @@ from controller.controller import PlotController
 class TestPlotController(unittest.TestCase):
 
     def test_plot_freq_and_signal(self):
-        """Тестирует, построение графиков частоты и сигнала"""
+        """Построение графиков частоты и сигнала"""
 
         controller = PlotController(IndexType.Frequency,
                                     DataType.Signal,
@@ -17,7 +17,7 @@ class TestPlotController(unittest.TestCase):
         controller.plot()
 
     def test_plot_number_and_r2(self):
-        """Тестирует, построение графиков серийного номера и R2"""
+        """Построение графиков серийного номера и R2"""
 
         controller = PlotController(IndexType.Number,
                                     DataType.R2,
