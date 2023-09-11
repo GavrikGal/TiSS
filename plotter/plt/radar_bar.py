@@ -9,4 +9,4 @@ class RadarBarHandler(BaseHandler):
 
     def plot(self, plotter: BasePlotter) -> None:
         for data_set in plotter.data_container:
-            print(data_set)
+            print(f'Plotting chart for {plotter.chart_type.name}')
