@@ -11,15 +11,13 @@ from .style.line_style import LineStyle
 class BasePlotter(ABC):
     """Абстракция графопостроителя (плоттера)"""
 
-    chart_type: ChartType
-    grid_style: GridStyle
-    line_styles: List[LineStyle]
-    data_container: List[BaseDataFrame]
-
-    @abstractmethod
     def __init__(self, data_container: List[BaseDataFrame], chart_type: ChartType,
                  grid_style: GridStyle, line_styles: List[LineStyle]) -> None:
         """Инициализация плоттера"""
+        self.chart_type = chart_type
+        self.grid_style = grid_style
+        self.line_styles = line_styles
+        self.data_container = data_container
 
     @abstractmethod
     def show(self) -> None:

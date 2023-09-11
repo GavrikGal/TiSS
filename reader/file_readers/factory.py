@@ -1,5 +1,4 @@
 from typing import Callable, Union
-
 from reader.constants import IndexType, DataType, ColumnType
 from reader.base_file_reader import BaseFileReader
 from reader.base_factory import BaseFileReaderFactory, ClassNotFoundError
