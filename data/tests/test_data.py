@@ -1,10 +1,7 @@
 import unittest
 
-
 from reader.file_readers.data_reader import DataReader
 from reader.constants import IndexType, DataType, ColumnType
-from controller.controller import PlotController
-from plotter.constants import ChartType
 
 from .test_sets import test_data_dirs, test_unique_index_answer
 

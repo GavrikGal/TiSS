@@ -1,6 +1,8 @@
 import math
 from typing import List, Dict
 
+from matplotlib import pyplot as plt
+
 from data.base_data_container import BaseDataContainer
 from plotter.base_plotter import BasePlotter
 from plotter.constants import ChartType
@@ -24,12 +26,15 @@ class Plotter(BasePlotter):
         self.subplot_sizes = {1: 9, 2: 4.5, 3: 3, 4: 2}
         self.subplot_names = self._get_subplot_names_from(data_container)
 
+    def transpose_data_in_container(self) -> None:
+        self.__init__(self.data_container.transpose_data(), self.chart_type)
+
     @staticmethod
     def _get_subplot_names_from(data_container: BaseDataContainer) -> List[str]:
         return data_container.get_unique_columns()
 
     def get_subplot_names(self):
-        return self.subplot_names
+        return self.data_container.get_unique_columns()
 
     @staticmethod
     def _get_n_rows_from(n_subplots: int, n_cols: int) -> int:
@@ -53,7 +58,7 @@ class Plotter(BasePlotter):
 
     def get_h_plot(self):
         if not self._h_plot:
-            self._h_plot = self._n_rows * self.subplot_sizes[self._n_rows]
+            self._h_plot = self._n_rows * self.subplot_sizes[self.get_n_cols()]
         return self._h_plot
 
     def get_w_plot(self):
@@ -90,7 +95,10 @@ class Plotter(BasePlotter):
         # todo: установить стиль в хэндлер
         pass
 
-    def show(self, chart_type: ChartType) -> None:
+    def plot(self, chart_type: ChartType) -> None:
 
         handler = self.factory.get_handler(chart_type)
         handler.plot(plotter=self)
+
+    def show(self) -> None:
+        plt.show()

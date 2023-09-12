@@ -24,12 +24,20 @@ class BasePlotter(ABC):
         self.data_container = data_container
 
     @abstractmethod
+    def transpose_data_in_container(self) -> None:
+        """Транспонировать данные в контейнере"""
+
+    @abstractmethod
     def get_subplot_names(self) -> List[str]:
         """Получить имена подграфиков"""
 
     @abstractmethod
-    def show(self, chart_type: ChartType) -> None:
+    def plot(self, chart_type: ChartType) -> None:
         """Построить график"""
+
+    @abstractmethod
+    def show(self) -> None:
+        """Показать график"""
 
     @abstractmethod
     def get_h_plot(self):

@@ -5,6 +5,11 @@ from data.base_data_container import BaseDataContainer
 
 class DataContainer(BaseDataContainer):
 
+    def transpose_data(self) -> BaseDataContainer:
+        for (key, value) in self.items():
+            self.update({key: value.T})
+        return self
+
     def get_unique_columns(self) -> List[str]:
 
         unique_columns = set()

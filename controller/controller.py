@@ -19,6 +19,7 @@ class PlotController:
 
         data = self.data_reader.read_data()
         plotter = Plotter(data_container=data, chart_type=self.chart_type)
-        plotter.show(self.chart_type)
+        plotter.plot(self.chart_type)
+        plotter.show()
         # print(data)
         # todo: доделать

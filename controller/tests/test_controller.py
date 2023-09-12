@@ -26,24 +26,3 @@ class TestPlotController(unittest.TestCase):
                                     test_data_dirs, column_type=None,
                                     chart_type=ChartType.BoxPlot)
         controller.plot()
-
-    # def test_plot_error_bar_plot(self):
-    #     """Построение графика доверительных интервалов"""
-    #
-    #     controller = PlotController(IndexType.Number,
-    #                                 DataType.R2,
-    #                                 test_data_dirs, column_type=None,
-    #                                 chart_type=ChartType.ErrorBar)
-    #
-    #     controller.plot()
-    #
-    # def test_plot_error_bar_plot_with_freq(self):
-    #     """Построение графиков доверительных интервалов для различных частот"""
-    #
-    #     controller = PlotController(IndexType.Number,
-    #                                 DataType.R2,
-    #                                 test_data_dirs, column_type=None,
-    #                                 chart_type=ChartType.ErrorBar)
-    #
-    #     controller.plot()
-
