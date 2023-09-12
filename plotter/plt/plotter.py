@@ -25,7 +25,7 @@ class Plotter(BasePlotter):
         self.subplot_names = self._get_subplot_names_from(data_container)
 
     @staticmethod
-    def _get_subplot_names_from(data_container: BaseDataContainer) -> List[object]:
+    def _get_subplot_names_from(data_container: BaseDataContainer) -> List[str]:
         return data_container.get_unique_columns()
 
     def get_subplot_names(self):

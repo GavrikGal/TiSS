@@ -9,7 +9,7 @@ from plotter.constants import ChartType
 from .test_sets import test_data_dirs, test_unique_index_answer
 
 
-class TestPlotController(unittest.TestCase):
+class TestData(unittest.TestCase):
 
     def test_unique_index(self):
         """Получение уникальных индексов (частот)"""

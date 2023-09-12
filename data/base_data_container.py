@@ -6,5 +6,5 @@ from typing import List
 class BaseDataContainer(UserDict, ABC):
 
     @abstractmethod
-    def get_unique_columns(self) -> List[object]:
+    def get_unique_columns(self) -> List[str]:
         """Возвращает список уникальных имен колонок из всего контейнера"""

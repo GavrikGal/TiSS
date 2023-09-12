@@ -24,7 +24,7 @@ class BasePlotter(ABC):
         self.data_container = data_container
 
     @abstractmethod
-    def get_subplot_names(self) -> List[object]:
+    def get_subplot_names(self) -> List[str]:
         """Получить имена подграфиков"""
 
     @abstractmethod
