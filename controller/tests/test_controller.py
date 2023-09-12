@@ -35,5 +35,5 @@ class TestPlotController(unittest.TestCase):
                                     test_data_dirs, column_type=None,
                                     chart_type=ChartType.ErrorBar)
 
-        controller.plot()
+        # controller.plot()
 

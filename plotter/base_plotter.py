@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Union
 
-from data.base_data_frame import BaseDataFrame
-# from plotter.base_handler_factory import BaseHandlerFactory
+from data.base_data_container import BaseDataContainer
 
 from .constants import ChartType
 from .style.grid_style import GridStyle
@@ -12,7 +11,7 @@ from .style.line_style import LineStyle
 class BasePlotter(ABC):
     """Абстракция графопостроителя (плоттера)"""
 
-    def __init__(self, data_container: List[BaseDataFrame], chart_type: ChartType,
+    def __init__(self, data_container: BaseDataContainer, chart_type: ChartType,
                  grid_style: Union[None, GridStyle], line_styles: Union[None, List[LineStyle]]) -> None:
         """Инициализация плоттера"""
         self.chart_type = chart_type

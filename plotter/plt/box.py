@@ -9,4 +9,5 @@ class BoxPlotHandler(BaseHandler):
 
     def plot(self, plotter: BasePlotter) -> None:
         for data_set in plotter.data_container:
-            print(f'Plotting chart for {plotter.chart_type.name}')
+            pass
+            # print(f'Plotting chart for {plotter.chart_type.name}')

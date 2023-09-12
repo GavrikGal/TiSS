@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from data.base_data_frame import BaseDataFrame
+from data.base_data_container import BaseDataContainer
 from plotter.base_plotter import BasePlotter
 from plotter.constants import ChartType
 from plotter.style.grid_style import GridStyle
@@ -11,7 +11,7 @@ from .factory import HandlerFactory
 
 class Plotter(BasePlotter):
 
-    def __init__(self, data_container: List[BaseDataFrame], chart_type: ChartType,
+    def __init__(self, data_container: BaseDataContainer, chart_type: ChartType,
                  grid_style: Union[None, GridStyle] = None,
                  line_styles: Union[None, List[LineStyle]] = None) -> None:
         """Инициализация плоттера"""
