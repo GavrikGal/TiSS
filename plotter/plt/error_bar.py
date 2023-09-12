@@ -12,13 +12,21 @@ class ErrorBarHandler(BaseHandler):
     def plot(self, plotter: BasePlotter) -> None:
 
         # todo: количество графиков и размер должен определять Плоттер
-        fig, axis = plt.subplots(nrows=1, ncols=1, figsize=(14, 9))
+        plt.figure(layout='constrained',
+                   figsize=(plotter.get_w_plot(), plotter.get_h_plot()))
+        fig, axis = plt.subplots(nrows=plotter.get_n_rows(),
+                                 ncols=plotter.get_n_cols(),
+                                 figsize=(plotter.get_w_plot(), plotter.get_h_plot()))
 
-        data_set = plotter.data_container
+        subplot_names = plotter.get_subplot_names
 
-        x = [df.name for df in data_set]
-        y = [df.mean().values[0] for df in data_set]
-        datas = [df[0].values for df in data_set]
+        data_container = plotter.data_container
+
+        print(plotter.data_container)
+
+        x = data_container.keys()
+        y = [df.mean().values[0] for df in data_container.values()]
+        datas = [df[0].values for df in data_container.values()]
         # st.t.interval(alpha=0.95, df=len(data) - 1, loc=np.mean(data), scale=st.sem(data))
         yerr = [(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
                                                scale=st.sem(data))[0]) for data in datas]

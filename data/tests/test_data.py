@@ -17,6 +17,5 @@ class TestPlotController(unittest.TestCase):
         data_reader = DataReader(IndexType.Frequency, DataType.Signal, test_data_dirs,
                                  column_type=ColumnType.Number)
         data = data_reader.read_data()
-        expected = data.get_unique_index()
-
+        expected = data.get_unique_columns()
         self.assertListEqual(expected, test_unique_index_answer)

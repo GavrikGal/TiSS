@@ -5,11 +5,11 @@ from data.base_data_container import BaseDataContainer
 
 class DataContainer(BaseDataContainer):
 
-    def get_unique_index(self) -> List[object]:
+    def get_unique_columns(self) -> List[object]:
 
-        unique_index = set()
+        unique_columns = set()
         for data_frame in self.values():
-            for index in data_frame.index.values:
-                unique_index.add(index)
+            for column in data_frame.columns.values:
+                unique_columns.add(column)
 
-        return sorted(list(unique_index))
+        return sorted(list(unique_columns))
