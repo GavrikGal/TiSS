@@ -19,7 +19,9 @@ class BasePlotter(ABC):
         self.grid_style = grid_style
         self.line_styles = line_styles
         self.data_container = data_container
-        # self.factory: BaseHandlerFactory
+        self.unique_cols: List[object]  # todo: это должен делать контейнер и хранить там
+        self.ncols: int
+        self.nrows: int
 
     @abstractmethod
     def show(self, chart_type: ChartType) -> None:
