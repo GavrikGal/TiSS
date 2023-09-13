@@ -45,8 +45,11 @@ class ErrorBarHandler(BaseHandler):
                     data = df[subplot_name].dropna().values
                     scale = data.std(ddof=1)/len(data)**0.5
                     print(f"{scale=}")
-                    yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                                                              scale=scale)[0])
+                    interval = st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
+                                             scale=st.tstd(data))
+                    print(f'{interval=}')
+                    yerr.append(st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
+                                                              scale=scale)[1] - np.mean(data))
                     # yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
                     #                                           scale=st.sem(data))[0])
                     # yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
