@@ -44,7 +44,9 @@ class ErrorBarHandler(BaseHandler):
                     y.append(df[subplot_name].mean())
                     data = df[subplot_name].dropna().values
                     yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                                                              scale=st.tstd(data))[0])
+                                                              scale=st.sem(data))[0])
+                    # yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
+                    #                                           scale=st.tstd(data))[0])
             axes.errorbar(x=x, y=y, yerr=yerr,
                           color=self.line_styles[0].color, capsize=5, marker="o",
                           markersize=8, mfc="red", mec=self.line_styles[0].color)
