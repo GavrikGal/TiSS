@@ -43,17 +43,13 @@ class ErrorBarHandler(BaseHandler):
                     x.append(name)
                     y.append(df[subplot_name].mean())
                     data = df[subplot_name].dropna().values
-                    scale = data.std(ddof=1)/len(data)**0.5
-                    print(f"{scale=}")
-                    interval = st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                                             scale=st.tstd(data))
-                    print(f'{interval=}')
-                    yerr.append(st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                                                              scale=scale)[1] - np.mean(data))
-                    # yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                    #                                           scale=st.sem(data))[0])
-                    # yerr.append(np.mean(data) - st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
-                    #                                           scale=st.tstd(data))[0])
+
+                    # todo: Если найдется формула только размаха доверительного интервала - заменить
+                    err_interval = st.t.interval(confidence=0.95, df=len(data) - 1, loc=np.mean(data),
+                                                 scale=st.sem(data))
+                    err = err_interval[1]-np.mean(data)
+                    yerr.append(err)
+
             axes.errorbar(x=x, y=y, yerr=yerr,
                           color=self.line_styles[0].color, capsize=5, marker="o",
                           markersize=8, mfc="red", mec=self.line_styles[0].color)
