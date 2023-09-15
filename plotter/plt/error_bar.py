@@ -26,11 +26,13 @@ class ErrorBarHandler(BaseHandler):
             plotter.transpose_data_in_container()
 
         plt.figure(layout='constrained',
-                   figsize=(plotter.get_w_plot(), plotter.get_h_plot()))
-        subplot_names = plotter.get_subplot_names()
+                   figsize=(plotter.size.width, plotter.size.height))
+
+        subplot_names = [subplot.name for subplot in plotter.subplots]
 
         for i_sub, subplot_name in enumerate(subplot_names):
-            axes = plt.subplot(plotter.get_n_rows(), plotter.get_n_cols(), i_sub + 1)
+            plt.tight_layout()
+            axes = plt.subplot(plotter.grid.row, plotter.grid.col, i_sub + 1)
 
             if subplot_name != 0:
                 plt.title(f"{subplot_name}", loc='center')
@@ -54,4 +56,7 @@ class ErrorBarHandler(BaseHandler):
                           color=self.line_styles[0].color, capsize=5, marker="o",
                           markersize=8, mfc="red", mec=self.line_styles[0].color)
 
+            axes.yaxis.grid(True)
             axes.set_yticks(np.arange(0, self.grid_styles.get('major').max_y_tick, 10))
+
+
