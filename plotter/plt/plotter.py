@@ -23,7 +23,7 @@ class Plotter(BasePlotter):
         self._h_plot = None
         self._w_plot = None
         self.factory = HandlerFactory()
-        self.subplot_sizes = {1: 9, 2: 4.5, 3: 3, 4: 2}
+        self.subplot_sizes = {1: 9, 2: 4.5, 3: 3, 4: 2.5, 5: 2}
         self.subplot_names = self._get_subplot_names_from(data_container)
 
     def transpose_data_in_container(self) -> None:
@@ -42,15 +42,10 @@ class Plotter(BasePlotter):
 
     @staticmethod
     def _get_n_cols_from(n_subplots: int) -> int:
-        if n_subplots > 12:
-            n_cols = 4
-        elif n_subplots > 4:
-            n_cols = 3
-        elif n_subplots > 1:
-            n_cols = 2
-        else:
-            n_cols = 1
-        return n_cols
+        n_cols = 5
+        if n_subplots < 26:
+            n_cols = math.floor(n_subplots ** 0.5)
+        return int(n_cols)
 
     @staticmethod
     def _get_n_subplots_from(data_container: BaseDataContainer) -> int:
